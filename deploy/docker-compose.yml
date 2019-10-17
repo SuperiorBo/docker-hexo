@@ -9,4 +9,4 @@ services:
       - "/d/docker/hexo/themes:/home/hexo/themes"
       - "/d/docker/hexo/_config.yml:/home/hexo/_config.yml"
       - "/d/docker/hexo/ssh:/root/.ssh"
-    command: chobon8 chobon@aliyun.com d
+    command: deploy

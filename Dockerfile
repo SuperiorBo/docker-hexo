@@ -1,9 +1,11 @@
 FROM alpine:latest
-LABEL MAINTAINER="chobon@aliyun.com"
+LABEL maintainer="chobon <chobon@aliyun.com>"
 
 ARG UID=1000
 ARG GID=1000
-ARG PORT=80
+ARG PORT=4000
+
+EXPOSE ${PORT}
 
 # change ALIYUN apk source
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
@@ -36,7 +38,7 @@ RUN hexo init . \
 
 VOLUME ["/home/hexo/source","/home/hexo/themes","/root/.ssh"]
 
-EXPOSE ${PORT}
+RUN chown -R hexo .
 
 USER hexo
 

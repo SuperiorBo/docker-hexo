@@ -36,7 +36,7 @@ WORKDIR /home/hexo
 RUN hexo init . \
 && npm install --save hexo-deployer-git
 
-VOLUME ["/home/hexo/source","/home/hexo/themes","/root/.ssh"]
+VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh"]
 
 RUN chown -R hexo .
 

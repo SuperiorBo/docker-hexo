@@ -34,7 +34,8 @@ RUN apk --update --no-progress add git nodejs npm openssh \
 WORKDIR /home/hexo
 
 RUN hexo init . \
-&& npm install --save hexo-deployer-git
+&& npm install --save hexo-deployer-git \
+&& npm i hexo-generator-json-content --save
 
 VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh"]
 

@@ -27,15 +27,16 @@ RUN apk add --no-cache shadow sudo  && \
 #ENV HEXO_VERSION = 
 
 
-RUN apk --update --no-progress add git nodejs npm openssh \
-&& rm -rf /var/cache/apk/* \
-&& npm install -g hexo-cli
+RUN apk --update --no-progress add git nodejs npm openssh && \
+    rm -rf /var/cache/apk/*
 
 WORKDIR /home/hexo
 
-RUN hexo init . \
-&& npm install --save hexo-deployer-git \
-&& npm i hexo-generator-json-content --save
+RUN npm config set registry https://registry.npm.taobao.org && \
+    npm install -g hexo-cli && \
+    hexo init . && \
+    npm install --save hexo-deployer-git && \
+    npm i hexo-generator-json-content --save
 
 VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh"]
 

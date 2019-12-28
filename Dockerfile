@@ -10,7 +10,8 @@ EXPOSE ${PORT}
 # change ALIYUN apk source
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
-RUN apk add --no-cache shadow sudo  && \
+RUN apk --update --no-progress  add --no-cache shadow sudo git nodejs npm openssh && \
+    rm -rf /var/cache/apk/* && \
     if [ -z "`getent group $GID`" ]; then \
       addgroup -S -g $GID hexo; \
     else \
@@ -26,18 +27,14 @@ RUN apk add --no-cache shadow sudo  && \
 
 #ENV HEXO_VERSION = 
 
-
-RUN apk --update --no-progress add git nodejs npm openssh \
-&& rm -rf /var/cache/apk/* \
-&& npm install -g hexo-cli
-
 WORKDIR /home/hexo
 
-RUN hexo init . \
-&& npm install --save hexo-deployer-git \
-&& npm i hexo-generator-json-content --save
+RUN npm --registry https://registry.npm.taobao.org install -g hexo-cli && \
+    hexo init . && \
+    npm --registry https://registry.npm.taobao.org install --save hexo-deployer-git && \
+    npm --registry https://registry.npm.taobao.org install --save hexo-generator-json-content
 
-VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh"]
+VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh","home/hexo/public"]
 
 RUN chown -R hexo .
 

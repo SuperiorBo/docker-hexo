@@ -30,10 +30,15 @@ RUN apk --update --no-progress  add --no-cache shadow sudo git nodejs npm openss
 WORKDIR /home/hexo
 
 RUN npm config set registry https://registry.npm.taobao.org && \
-    npm install -g hexo-cli && \
+    npm install -g hexo-cli --save && \
     hexo init . && \
-    npm install --save hexo-deployer-git && \
-    npm install --save hexo-generator-json-content --save
+    npm install && \
+    npm install hexo-deployer-git --save && \
+    npm install hexo-generator-json-content --save && \
+    #npm install --save hexo-tag-aplayer
+    npm install cheerio@0.22.0 --save && \
+    npm install hexo-renderer-pug --save && \
+    npm install hexo-renderer-stylus --save
 
 VOLUME ["/home/hexo/source","/home/hexo/themes","/home/hexo/.ssh"]
 

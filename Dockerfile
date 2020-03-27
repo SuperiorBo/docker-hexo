@@ -8,7 +8,7 @@ ENV HEXO_MODE=server
 
 WORKDIR /home/hexo
 
-RUN apk --update --no-progress  add --no-cache git nodejs npm openssh && \
+RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
     npm config set registry https://registry.npm.taobao.org && \
     npm install -g hexo-cli --save && \
     hexo init . && \
@@ -23,10 +23,11 @@ RUN apk --update --no-progress  add --no-cache git nodejs npm openssh && \
 # copy local files
 ADD root /
 
-VOLUME /home/hexo/source /home/hexo/themes /home/hexo/.ssh
+VOLUME /home/hexo/source /home/hexo/themes /home/hexo/.ssh 
 
 RUN addgroup hexo && \
     adduser -D -g "" -s /bin/sh -G hexo hexo && \
     chmod a+x /usr/bin/hexo
+    #chown -R hexo .
 
 EXPOSE 4000

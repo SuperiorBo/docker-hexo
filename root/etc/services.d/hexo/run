@@ -1,13 +1,10 @@
 #!/usr/bin/with-contenv sh
 
-if [ $HEXO_MODE = 's' ] || [ $HEXO_MODE = 'server' ] then
+if [ $HEXO_MODE = 's' ] || [ $HEXO_MODE = 'server' ]; then
     # Start Hexo.
-    exec s6-setuidgid $HEXO_RUNAS hexo s -p 4000
+    exec s6-setuidgid $HEXO_RUNAS hexo server -p 4000
 fi
 
 if [ $HEXO_MODE = 'd' ] || [ $HEXO_MODE = 'deploy' ]; then
-    exec s6-setuidgid $HEXO_RUNAS hexo -d
+    exec s6-setuidgid $HEXO_RUNAS hexo deploy
 fi
-
-
-echo 'Exiting aria2'

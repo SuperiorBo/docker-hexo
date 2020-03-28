@@ -1,10 +1,11 @@
 #!/usr/bin/with-contenv sh
 
 if [ $HEXO_MODE = 's' ] || [ $HEXO_MODE = 'server' ]; then
-    # Start Hexo.
-    exec s6-setuidgid $HEXO_RUNAS hexo server -p 4000
+    # Start Hexo Server.
+    exec s6-setuidgid $HEXO_RUNAS hexo server -p 4000 --cwd /home/hexo
 fi
 
 if [ $HEXO_MODE = 'd' ] || [ $HEXO_MODE = 'deploy' ]; then
-    exec s6-setuidgid $HEXO_RUNAS hexo deploy
+    # Start Hexo Deploy.
+    exec s6-setuidgid $HEXO_RUNAS hexo deploy --cwd /home/hexo
 fi

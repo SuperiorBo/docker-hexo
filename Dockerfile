@@ -10,14 +10,14 @@ WORKDIR /home/hexo
 
 RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
     npm config set registry https://registry.npm.taobao.org && \
-    npm install -g hexo-cli --save && \
+    npm install -g hexo-cli && \
     hexo init . && \
-    npm install hexo-deployer-git --save && \
-    #npm install hexo-generator-json-content --save && \
-    #npm install --save hexo-tag-aplayer
-    #npm install cheerio@0.22.0 --save && \
-    #npm install hexo-renderer-pug --save && \
-    #npm install hexo-renderer-stylus --save
+    npm install hexo-deployer-git && \
+    #npm install hexo-generator-json-content && \
+    npm install hexo-tag-aplayer && \
+    npm install cheerio@0.22.0 && \
+    npm install hexo-renderer-pug && \
+    npm install hexo-renderer-stylus && \
     rm -rf /var/cache/apk/*
 
 # copy local files
@@ -27,7 +27,7 @@ VOLUME /home/hexo/source /home/hexo/themes /home/hexo/.ssh
 
 RUN addgroup hexo && \
     adduser -D -g "" -s /bin/sh -G hexo hexo && \
-    chmod a+x /usr/bin/hexo
-    #chown -R hexo .
+    chmod a+x /usr/bin/hexo && \
+    chown -R hexo .
 
 EXPOSE 4000

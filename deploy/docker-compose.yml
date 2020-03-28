@@ -9,4 +9,5 @@ services:
       - "/d/docker/hexo/themes:/home/hexo/themes"
       - "/d/docker/hexo/_config.yml:/home/hexo/_config.yml"
       - "/d/docker/hexo/ssh:/home/hexo/.ssh"
-    command: deploy
+    environment: 
+      HEXO_MODE: deploy

@@ -6,6 +6,9 @@ ENV HEXO_MODE=server
 # change ALIYUN apk source
 #RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
+RUN addgroup hexo && \
+    adduser -D -g "" -s /bin/sh -G hexo hexo
+
 WORKDIR /home/hexo
 
 RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
@@ -18,6 +21,8 @@ RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
     npm install cheerio@0.22.0 && \
     npm install hexo-renderer-pug && \
     npm install hexo-renderer-stylus && \
+    npm install hexo-wordcount && \
+    npm install hexo-abbrlink && \
     rm -rf /var/cache/apk/*
 
 # copy local files
@@ -25,9 +30,6 @@ ADD root /
 
 VOLUME /home/hexo/source /home/hexo/themes /home/hexo/.ssh 
 
-RUN addgroup hexo && \
-    adduser -D -g "" -s /bin/sh -G hexo hexo && \
-    chmod a+x /usr/bin/hexo && \
-    chown -R hexo .
+RUN chown -R hexo .
 
 EXPOSE 4000

@@ -1,5 +1,7 @@
-FROM dobor/alpine-base:latest
+FROM dobor/alpine-base:latest AS base
 LABEL MAINTAINER=chobon@aliyun.com
+
+FROM dobor/alpine-base:latest AS build
 
 ENV HEXO_MODE=server
 ENV HEXO_DOUBAN=true

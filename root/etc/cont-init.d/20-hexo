@@ -1,7 +1,10 @@
 #!/usr/bin/with-contenv sh
 
+# Set Env User
+s6-setuidgid -iu $HEXO_RUNAS
+
 # Generate Blog
-exec s6-setuidgid $HEXO_RUNAS hexo g -f --cwd /home/hexo
+hexo g -f --cwd /home/hexo
 
 # Generate Douban Page
-exec s6-setuidgid $HEXO_RUNAS hexo douban --cwd /home/hexo
+hexo douban --cwd /home/hexo

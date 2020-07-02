@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv sh
 
-# Set Env User
-s6-setuidgid -iu $HEXO_RUNAS
+# Set User Context
+s6-envuidgid -iu $HEXO_RUNAS
 
 # Generate Blog
 hexo g -f --cwd /home/hexo

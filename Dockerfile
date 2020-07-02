@@ -23,6 +23,7 @@ RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
     npm install hexo-renderer-stylus && \
     npm install hexo-wordcount && \
     npm install hexo-abbrlink && \
+    npm install hexo-douban && \
     rm -rf /var/cache/apk/*
 
 # copy local files

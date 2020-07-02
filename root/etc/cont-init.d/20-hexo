@@ -3,3 +3,4 @@
 # Generate Blog
 exec s6-setuidgid $HEXO_RUNAS hexo g -f --cwd /home/hexo
 
+

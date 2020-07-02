@@ -1,4 +1,8 @@
 #!/usr/bin/with-contenv sh
 
+# Set User Context
+s6-envuidgid -iu $HEXO_RUNAS
+
 # Generate Blog
 exec s6-setuidgid $HEXO_RUNAS hexo g -f --cwd /home/hexo
+

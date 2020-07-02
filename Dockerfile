@@ -2,9 +2,10 @@ FROM dobor/alpine-base:latest
 LABEL MAINTAINER=chobon@aliyun.com
 
 ENV HEXO_MODE=server
+ENV HEXO_DOUBAN=true
 
 # change ALIYUN apk source
-#RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 RUN addgroup hexo && \
     adduser -D -g "" -s /bin/sh -G hexo hexo

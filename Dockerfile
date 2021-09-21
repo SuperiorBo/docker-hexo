@@ -13,7 +13,6 @@ RUN addgroup hexo && \
 WORKDIR /home/hexo
 
 RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
-    npm config set registry https://registry.npm.taobao.org && \
     npm install -g hexo-cli && \
     hexo init . && \
     npm install hexo-deployer-git && \

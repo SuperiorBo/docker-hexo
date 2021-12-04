@@ -3,6 +3,7 @@ LABEL MAINTAINER=chobon@aliyun.com
 
 ENV HEXO_MODE=server
 ENV HEXO_DOUBAN=true
+ENV HEXO_RUNAS=hexo
 
 # change ALIYUN apk source
 # RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories

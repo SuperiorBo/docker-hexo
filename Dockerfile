@@ -1,4 +1,4 @@
-FROM dobor/alpine-base:latest AS base
+FROM ghcr.io/superiorbo/alpine:latest AS base
 LABEL MAINTAINER=chobon@aliyun.com
 
 ENV HEXO_MODE=server
@@ -17,13 +17,18 @@ RUN apk --update --no-progress --no-cache add git nodejs npm openssh && \
     hexo init . && \
     npm install hexo-deployer-git && \
     #npm install hexo-generator-json-content && \
+    npm install hexo-theme-butterfly && \
+    npm install hexo-douban && \
     npm install hexo-tag-aplayer && \
-    npm install cheerio@0.22.0 && \
+    npm install cheerio && \
     npm install hexo-renderer-pug && \
     npm install hexo-renderer-stylus && \
     npm install hexo-wordcount && \
     npm install hexo-abbrlink && \
-    npm install hexo-douban && \
+    npm install hexo-generator-search && \
+    npm install hexo-generator-sitemap && \
+    npm install hexo-renderer-ejs && \
+    npm install hexo-renderer-marked && \
     rm -rf /var/cache/apk/*
 
 # copy local files

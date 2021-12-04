@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-# Generate Douban Page
-if [ "$HEXO_DOUBAN" == "true" -o "$HEXO_DOUBAN" == "1" ]; then
-    exec s6-setuidgid $HEXO_RUNAS hexo douban --cwd /home/hexo
-fi

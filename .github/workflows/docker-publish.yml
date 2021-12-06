@@ -44,7 +44,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build alpine image
+      - name: Build hexo image
         run: docker build . --file ./Dockerfile --tag hexo --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: push Docker image
@@ -60,5 +60,5 @@ jobs:
           [ "$VERSION" == "master" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag alpine $IMAGE_ID:$VERSION
+          docker tag hexo $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION

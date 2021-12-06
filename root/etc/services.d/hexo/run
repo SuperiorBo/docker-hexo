@@ -7,5 +7,7 @@ fi
 
 if [ $HEXO_MODE = 'd' ] || [ $HEXO_MODE = 'deploy' ]; then
     # Start Hexo Deploy.
-    exec s6-setuidgid $HEXO_RUNAS hexo deploy --cwd /home/hexo
+    chown -R root /home/hexo/.ssh
+    exec s6-setuidgid $HEXO_RUNAS hexo deploy -g --cwd /home/hexo
+    chmod -xR /root/.config
 fi

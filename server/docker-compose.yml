@@ -8,8 +8,9 @@ services:
       - "80:4000"
     volumes:
       - "/d/docker/hexo/source:/home/hexo/source"
-      - "/d/docker/hexo/themes:/home/hexo/themes"
+      # - "/d/docker/hexo/themes:/home/hexo/themes"
       - "/d/docker/hexo/_config.yml:/home/hexo/_config.yml"
+      - "/d/docker/hexo/_config.butterfly.yml:/home/hexo/_config.butterfly.yml"
       - "/d/docker/hexo/.ssh:/home/hexo/.ssh"
     environment: 
       HEXO_MODE: server

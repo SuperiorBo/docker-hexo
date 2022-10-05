@@ -40,3 +40,5 @@ VOLUME /home/hexo/source /home/hexo/themes /home/hexo/.ssh
 RUN chown -R hexo .
 
 EXPOSE 4000
+
+CMD []
